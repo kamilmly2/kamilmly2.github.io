@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathMaster - Profesjonalne Korepetycje</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="#hero" class="back-to-top" title="Powrót do góry">↑</a>
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="container">
+            <h1 class="logo" aria-label="MathMaster logo">MathMaster</h1>
+            <ul class="nav-links">
+                <li><a href="#about" aria-label="About section">O mnie</a></li>
+                <li><a href="#methods" aria-label="Methods section">Metody</a></li>
+                <li><a href="#reviews" aria-label="Reviews section">Opinie</a></li>
+                <li><a href="#contact" class="cta-nav" aria-label="Contact section">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero" class="section hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Odkryj Magię Matematyki</h2>
+                <p>Indywidualne podejście • Doświadczony nauczyciel • Gwarancja postępów</p>
+                <a href="#contact" class="cta-button">Rozpocznij swoją przygodę z matematyką!</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image"></div>
+                <div class="about-content">
+                    <h3>Mgr Anna Kowalska</h3>
+                    <p>Od 10 lat pomagam uczniom odkryć piękno matematyki. Moje kwalifikacje:</p>
+                    <ul class="qualifications">
+                        <li>Magister matematyki - Uniwersytet Jagielloński</li>
+                        <li>Certyfikowany tutor akademicki</li>
+                        <li>Autor kursów online</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="methods" class="section methods">
+        <div class="container">
+            <h2 class="section-title">Nasze metody</h2>
+            <div class="method-cards">
+                <div class="method-card">
+                    <h3>Personalizacja</h3>
+                    <p>Indywidualny plan nauki dostosowany do Twoich potrzeb</p>
+                </div>
+                <div class="method-card">
+                    <h3>Technologia</h3>
+                    <p>Interaktywne narzędzia i platforma e-learningowa</p>
+                </div>
+                <div class="method-card">
+                    <h3>Praktyka</h3>
+                    <p>Realne zastosowania matematyki w życiu codziennym</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="section reviews">
+        <div class="container">
+            <h2 class="section-title">Opinie uczniów</h2>
+            <div class="review-grid">
+                <div class="review-card">
+                    <p>"Najlepsze korepetycje! W końcu zrozumiałem algebrę"</p>
+                    <div class="review-author">Kasia, 18 lat</div>
+                </div>
+                <div class="review-card">
+                    <p>"Profesjonalne podejście i świetna atmosfera"</p>
+                    <div class="review-author">Marek, 25 lat</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Umów się na lekcję</h2>
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="contactForm">
+                <input type="hidden" name="access_key" value="f49bbf3f-d224-4f8d-ba33-0a514412de84">
+                
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        name="name" 
+                        placeholder="Imię i nazwisko" 
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="Adres e-mail" 
+                        required
+                    >
+                </div>
+    
+                <div class="form-group">
+                    <textarea 
+                        name="message" 
+                        placeholder="Twoja wiadomość..." 
+                        rows="5" 
+                        required
+                    ></textarea>
+                </div>
+    
+                <button type="submit" class="cta-button">Wyślij zgłoszenie</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
