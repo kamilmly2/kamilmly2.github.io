@@ -3,124 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MathMaster - Profesjonalne Korepetycje</title>
+    <title>Matematyka ONLINE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    </style>
 </head>
 <body>
-    <a href="#hero" class="back-to-top" title="Powrót do góry">↑</a>
-    <nav class="navbar" aria-label="Main navigation">
-        <div class="container">
-            <h1 class="logo" aria-label="MathMaster logo">MathMaster</h1>
-            <ul class="nav-links">
-                <li><a href="#about" aria-label="About section">O mnie</a></li>
-                <li><a href="#methods" aria-label="Methods section">Metody</a></li>
-                <li><a href="#reviews" aria-label="Reviews section">Opinie</a></li>
-                <li><a href="#contact" class="cta-nav" aria-label="Contact section">Kontakt</a></li>
-            </ul>
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="logo">Korepetycje z matematyki ONLINE</a>
+            <div class="nav-links">
+                <a href="#about">O mnie</a>
+                <a href="#approach">Metodyka</a>
+                <a href="#tools">Narzędzia</a>
+                <a href="#reviews">Opinie</a>
+                <a href="#contact">→ Kontakt</a>
+            </div>
         </div>
     </nav>
 
-    <section id="hero" class="section hero">
+    <div class="particles">
+        ${Array.from({length: 20}, () => `<div class="particle"></div>`).join('\n')}
+    </div>
+
+    <section class="hero">
+        <!-- Geometric shapes overlay -->
+        <div class="geometric-shapes">
+            <svg class="shape" width="100" height="100" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <svg class="shape" width="120" height="120" viewBox="0 0 120 120">
+                <rect x="30" y="30" width="60" height="60" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <svg class="shape" width="80" height="80" viewBox="0 0 80 80">
+                <polygon points="40,5 75,75 5,75" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+        </div>
+    
+        <!-- Mathematical formulas overlay -->
+        <div class="math-bg">
+            <div class="equation" style="top: 20%; left: 10%; font-size: 2rem;">∫ e^x dx</div>
+            <div class="equation" style="top: 40%; right: 15%; font-size: 3rem;">∇ × F</div>
+            <div class="equation" style="bottom: 30%; left: 20%; font-size: 2.5rem;">∑ n²</div>
+        </div>
+    
         <div class="container">
-            <div class="hero-content">
-                <h2>Odkryj Magię Matematyki</h2>
-                <p>Indywidualne podejście • Doświadczony nauczyciel • Gwarancja postępów</p>
-                <a href="#contact" class="cta-button">Rozpocznij swoją przygodę z matematyką!</a>
+            <div class="hero-grid">
+                <div class="hero-content fade-up">
+                    <h1>Rozpocznij przygodę z <span class="accent">matematyką</span></h1>
+                    <p>"Matematyka nie polega na liczbach, równaniach, obliczeniach czy algorytmach: chodzi o zrozumienie." — William Paul Thurston</p>
+                </div>
+                <img src="images/hero_image.png" alt="Online Math Tutoring" class="hero-image">
             </div>
         </div>
     </section>
 
     <section id="about" class="section">
         <div class="container">
-            <div class="about-grid">
-                <div class="about-image"></div>
-                <div class="about-content">
-                    <h3>Mgr Anna Kowalska</h3>
-                    <p>Od 10 lat pomagam uczniom odkryć piękno matematyki. Moje kwalifikacje:</p>
-                    <ul class="qualifications">
-                        <li>Magister matematyki - Uniwersytet Jagielloński</li>
-                        <li>Certyfikowany tutor akademicki</li>
-                        <li>Autor kursów online</li>
-                    </ul>
+            <h2>O mnie</h2>
+            <div class="about-me-section scale-up">
+                <div class="about-me-content">
+                    <div class="about-text slide-in-left">
+                        <p>👋 <span style="color: var(--claude-accent); font-weight: 600;">Cześć!</span> Nazywam się <span style="color: var(--claude-accent); font-weight: 600;">Kamil</span> i jestem studentem <span style="color: var(--claude-primary); font-weight: 600;">Informatyki na Politechnice Łódzkiej</span>. Chciałbym zaproponować Ci <span style="color: var(--claude-accent); font-weight: 600;">profesjonalne korepetycje z matematyki</span>, które pomogą Ci zwiększyć swoje umiejętności i pewność siebie w nauce. 🚀</p>
+                        <br>
+                        <p>📚 Moja oferta skierowana jest do uczniów <span style="color: var(--claude-primary); font-weight: 600;">szkoły podstawowej</span> oraz <span style="color: var(--claude-primary); font-weight: 600;">szkół średnich do matury podstawowej</span>. Razem przepracujemy trudne zadania i zagadnienia, wyjaśnię Ci niejasne pojęcia i metody, a także pomogę w przygotowaniu do egzaminów i testów. 🎯</p>
+                        <br>
+                        <p>💡 <span style="color: var(--claude-accent); font-weight: 600;">Dlaczego warto wybrać właśnie mnie?</span> Posiadam doświadczenie w udzielaniu korepetycji z matematyki oraz <span style="color: var(--claude-primary); font-weight: 600;">pozytywne opinie od moich uczniów</span>. Moja metoda nauczania jest indywidualnie dostosowana do potrzeb i poziomu ucznia, dzięki czemu nauka jest bardziej <span style="color: var(--claude-accent); font-weight: 600;">efektywna i skuteczna</span>. 🌟</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="methods" class="section methods">
+    <section id="approach" class="approach-section">
         <div class="container">
-            <h2 class="section-title">Nasze metody</h2>
-            <div class="method-cards">
-                <div class="method-card">
-                    <h3>Personalizacja</h3>
-                    <p>Indywidualny plan nauki dostosowany do Twoich potrzeb</p>
+            <h2>Moje podejście</h2>
+            <div class="approach-grid">
+                <div class="approach-item fade-up">
+                    
+                    <div class="approach-inside">
+                        <svg class="approach-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        <h3>Podstawy najważniejsze</h3>
+                        <p> Budowanie solidnych podstaw matematycznych poprzez jasne wyjaśnienia i systematyczne przechodzenie od koncepcji podstawowych do zaawansowanych.</p>
+                    </div>
                 </div>
-                <div class="method-card">
-                    <h3>Technologia</h3>
-                    <p>Interaktywne narzędzia i platforma e-learningowa</p>
+                <div class="approach-item fade-up">
+                    <div class="approach-inside">
+                        <svg class="approach-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                        <h3>Spersonalizowane tempo nauki</h3>
+                        <p>Każdy uczy się inaczej. Dostosowuję materiały i tempo zajęć do Twoich potrzeb, abyś czuł się pewnie i komfortowo na każdym etapie nauki.</p>
+                    </div>
                 </div>
-                <div class="method-card">
-                    <h3>Praktyka</h3>
-                    <p>Realne zastosowania matematyki w życiu codziennym</p>
+                <div class="approach-item fade-up">
+                    <div class="approach-inside">
+                        <svg class="approach-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                            <line x1="6" y1="1" x2="6" y2="4"/>
+                            <line x1="10" y1="1" x2="10" y2="4"/>
+                            <line x1="14" y1="1" x2="14" y2="4"/>
+                        </svg>
+                        <h3>Umiejętności rozwiązywania problemów</h3>
+                        <p>Rozwijanie myślenia strategicznego i umiejętności analitycznych poprzez różnorodne podejścia do rozwiązywania problemów.</p>
+                    </div>
+                </div>
+                <div class="approach-item fade-up">
+                    <div class="approach-inside">
+                        <svg class="approach-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                            <line x1="6" y1="1" x2="6" y2="4"/>
+                            <line x1="10" y1="1" x2="10" y2="4"/>
+                            <line x1="14" y1="1" x2="14" y2="4"/>
+                        </svg>
+                        <h3>Nauka przez praktykę</h3>
+                        <p>Wierzę, że najlpszym sposobem nauki jest systematyczne rozwiązywanie zadań, dlatego poza spotkaniami ONLINE, moi uczniowie dostają odpowiednią ilość zadań jako praca domowa.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="reviews" class="section reviews">
+    <section id="tools" class="tools-section">
         <div class="container">
-            <h2 class="section-title">Opinie uczniów</h2>
-            <div class="review-grid">
-                <div class="review-card">
-                    <p>"Najlepsze korepetycje! W końcu zrozumiałem algebrę"</p>
-                    <div class="review-author">Kasia, 18 lat</div>
-                </div>
-                <div class="review-card">
-                    <p>"Profesjonalne podejście i świetna atmosfera"</p>
-                    <div class="review-author">Marek, 25 lat</div>
+            <h2>Metody wykorzystywane do skutecznej nauki ONLINE</h2>
+            <div class="tools-panel fade-up">
+                <div class="tools-container">
+                    <div class="tool-item slide-in-left">
+                        <div class="tool-logo">
+                            <img src="images/discord_logo.png" alt="Discord Logo" class="tool-image" />
+                        </div>
+                        <div class="tool-description">
+                            <h4>Discord</h4>
+                            <p>Platforma do komunikacji głosowej i wideo z możliwością bezproblemowego udostępniania ekranu w wysokiej jakości. Pozwala na swobodną rozmowę i interakcję podczas zajęć.</p>
+                        </div>
+                    </div>
+    
+                    <div class="tool-item slide-in-right">
+                        <div class="tool-logo">
+                            <img src="images/miro_logo.svg" alt="Miro Logo" class="tool-image" />
+                        </div>
+                        <div class="tool-description">
+                            <h4>Miro</h4>
+                            <p>Interaktywna tablica online zapewniająca nieograniczoną przestrzeń do wspólnej pracy. Idealna do rozwiązywania zadań matematycznych, tworzenia diagramów i wizualizacji koncepcji w czasie rzeczywistym. Podczas lekcji uczeń może wraz ze mną pisać po tablicy lub u siebie w zeszycie, jak wygodniej</p>
+                        </div>
+                    </div>
+    
+                    <div class="tool-item slide-in-left">
+                        <div class="tool-logo">
+                            <img src="images/graphic_tablet_logo.png" alt="Tablet Graficzny" class="tool-image" />
+                        </div>
+                        <div class="tool-description">
+                            <h4>Tablet Graficzny</h4>
+                            <p>Korzystam z profesjonalnego tableta graficznego umożliwiającego płynne i czytelne pisanie oraz rysowanie podczas zajęć, zapewniając jakość porównywalną do tradycyjnej tablicy.</p>
+                        </div>
+                    </div>
+
+                    <div class="tool-item slide-in-left">
+                        <div class="tool-logo">
+                            <img src="images/PDF_file_icon.svg.png" alt="checkmark" class="tool-image" />
+                        </div>
+                        <div class="tool-description">
+                            <h4>Po zakończeniu lekcji</h4>
+                            <p>Całą tablicę z zadaniami przerobionymi na zajęciach, w formacie PDF, wysyłam na e-mail oraz czat discord.</p>
+                        </div>
+                    </div>
+
+                    <div class="tool-item slide-in-left">
+                        <div class="tool-logo">
+                            <img src="images/chat_logo.png" alt="checkmark" class="tool-image" />
+                        </div>
+                        <div class="tool-description">
+                            <h4>Pomoc poza godzinami lekcji</h4>
+                            <p>Korepetycje ONLINE w odróżnieniu od tradycyjnych umożliwiają swobodny kontakt pomiędzy korepetytorem a uczniem. Pozwala mi to na udzielenie pomocy uczniowi w każdej chwili w razie napotkanych problemów przy rozwiązywanej pracy domowej. Wystarczy tylko napisać problem na czacie DISCORD.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section contact">
+    <section id="reviews" class="reviews-section">
         <div class="container">
-            <h2 class="section-title">Umów się na lekcję</h2>
-            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="contactForm">
+            <h2>Opinie</h2>
+            <div class="reviews-grid">
+                <div class="review-card fade-up">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">E</div>
+                        <div class="reviewer-info">
+                            <h4>Ewelina</h4>
+                            <p>Rodzic</p>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>"Z całego serducha polecam Pana Kamila. Zawsze przygotowany do zajęć, do tego spokojny i bardzo cierpliwy. Tłumaczy uczniowi tak długo i na wiele sposobów, dopóki uczeń nie zrozumie."</p>
+                    </div>
+                </div>
+                <div class="review-card fade-up">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">A</div>
+                        <div class="reviewer-info">
+                            <h4>Agnieszka</h4>
+                            <p>Rodzic</p>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>"Punktualny, sumienny, obowiązkowy"</p>
+                    </div>
+                </div>
+                <div class="review-card fade-up">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">T</div>
+                        <div class="reviewer-info">
+                            <h4>Teresa</h4>
+                            <p>Rodzic</p>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>"Świetna atmosfera na zajęciach, mile spędzony czas, wiedza przekazywana w jasny sposób!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Umów się na pierwszą lekcję już teraz!</h2>
+            <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+
                 <input type="hidden" name="access_key" value="f49bbf3f-d224-4f8d-ba33-0a514412de84">
-                
+                <input type="checkbox" name="botcheck" id="" style="display: none;">
+
                 <div class="form-group">
-                    <input 
-                        type="text" 
-                        name="name" 
-                        placeholder="Imię i nazwisko" 
-                        required
-                    >
-                </div>
-                
-                <div class="form-group">
-                    <input 
-                        type="email" 
-                        name="email" 
-                        placeholder="Adres e-mail" 
-                        required
-                    >
+                    <label for="name">Imię i nazwisko</label>
+                    <input type="text" id="name" name="name" placeholder="Wpisz swoje imię" required>
+                    <div class="error-message" id="name-error">Proszę podać imię i nazwisko.</div>
                 </div>
     
                 <div class="form-group">
-                    <textarea 
-                        name="message" 
-                        placeholder="Twoja wiadomość..." 
-                        rows="5" 
-                        required
-                    ></textarea>
+                    <label for="email">Twój e-mail</label>
+                    <input type="email" id="email" name="email" placeholder="np. twojemail@example.com" required>
+                    <div class="error-message" id="email-error">Proszę podać poprawny adres e-mail.</div>
                 </div>
     
-                <button type="submit" class="cta-button">Wyślij zgłoszenie</button>
+                <div class="form-group">
+                    <label for="phonenumber">Numer telefonu</label>
+                    <input type="tel" id="phonenumber" name="phonenumber" placeholder="123456789" required pattern="[0-9]{9}" maxlength="9">
+                    <div class="error-message" id="phone-error">Podaj poprawny numer telefonu (9 cyfr).</div>
+                </div>
+        
+                <!-- Select Field -->
+                <div class="form-group">
+                    <label for="subject">Zakres</label>
+                    <select id="subject" name="subject" required>
+                        <option value="" disabled selected>Wybierz zakres</option>
+                        <option value="podstawowa">Szkoła podstawowa</option>
+                        <option value="osmoklasita">Przygotowanie do egzaminu 8-klasisty</option>
+                        <option value="srednia-podst">Szkoła Średnia - Poziom Podstawowy</option>
+                        <option value="srednia-roz">Szkoła Średnia - Poziom rozszerzony</option>
+                        <option value="mat-podst">Przygotowanie do matury poziom podstawowy</option>
+                    </select>
+                    <div class="error-message" id="subject-error">Proszę wybrać zakres.</div>
+                </div>
+        
+                <div class="form-group">
+                    <label for="message">Bieżący problem, temat w szkole</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Opisz swój problem..." required></textarea>
+                    <div class="error-message" id="message-error">Proszę wpisać wiadomość.</div>
+                </div>
+        
+                <button type="submit" class="cta-button">Wyślij wiadomość →</button>
             </form>
+
+            <div id="success-message" style="display: none;">
+                <h2>Dziękuje! 🎉</h2>
+                <p>Twoja wiadomość została wysłana pomyślnie.</p>
+                <p>Wkrótce się z Tobą skontaktuję!</p>
+            </div>
         </div>
     </section>
 
+    <div class="floating-button">
+        <button onclick="scrollToContact()">
+            Zapisz się! →
+        </button>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>

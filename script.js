@@ -1,170 +1,148 @@
-// Form submission handling
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const form = e.target;
-    const button = form.querySelector('button[type="submit"]');
-    const originalText = button.innerHTML;
-    
-    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Wysyłanie...';
-    button.disabled = true;
-
-    fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            showSuccessMessage();
-            form.reset();
-        } else {
-            throw new Error('Wystąpił błąd podczas wysyłania formularza');
+window.onload = function() {
+    // Reset the form fields when the page loads
+    document.getElementById("form").reset();
+};
+// Intersection Observer setup
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+};
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target); // Stop observing once animation is triggered
         }
-    })
-    .catch(error => {
-        alert(error.message);
-    })
-    .finally(() => {
-        button.innerHTML = originalText;
-        button.disabled = false;
+    });
+}, observerOptions);
+// Observe all animated elements
+document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll(
+        '.fade-up, .fade-in, .slide-in-left, .slide-in-right, .scale-up'
+    );
+    
+    animatedElements.forEach(element => {
+        observer.observe(element);
     });
 });
-
-function showSuccessMessage() {
-    const successDiv = document.createElement('div');
-    successDiv.className = 'success-message';
-    successDiv.innerHTML = `
-        <i class="fas fa-check-circle"></i>
-        <h3>Wiadomość wysłana pomyślnie!</h3>
-        <p>Odpowiemy w ciągu 24 godzin</p>
-    `;
-    
-    document.getElementById('contact').appendChild(successDiv);
-    setTimeout(() => successDiv.remove(), 5000);
-}
-
-// Smooth scroll to sections
+// Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth' });
-    });
-});
-
-// Sticky header with color transition
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('.navbar');
-    header.style.background = window.scrollY > 100 
-        ? 'rgba(40, 54, 24, 0.95)' 
-        : 'rgb(40, 54, 24)';
-});
-
-// Scroll-triggered animations
-const animateElements = () => {
-    const elementsToAnimate = [
-        ...document.querySelectorAll('.section'),
-        ...document.querySelectorAll('.method-card'),
-        ...document.querySelectorAll('.review-card')
-    ];
-
-    elementsToAnimate.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        if (elementTop < window.innerHeight - 100) {
-            element.classList.add('visible');
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     });
-};
-
-window.addEventListener('scroll', animateElements);
-window.addEventListener('load', animateElements);
-
-// Section-based scroll handling
-let isScrollBlocked = false;
-const sectionScrollController = {
-    scrollTimeout: null,
-
-    initialize() {
-        window.addEventListener("wheel", this.handleWheel.bind(this), { passive: false });
-        window.addEventListener("keydown", this.handleKeys.bind(this));
-        window.addEventListener("touchstart", this.handleTouchStart.bind(this), { passive: false });
-        window.addEventListener("touchend", this.handleTouchEnd.bind(this), { passive: false });
-    },
-
-    getCurrentSection() {
-        return [...document.querySelectorAll('.section')].find(section => {
-            const rect = section.getBoundingClientRect();
-            return rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2;
-        });
-    },
-
-    scrollToAdjacentSection(direction) {
-        if (isScrollBlocked) return false;
-        
-        const currentSection = this.getCurrentSection();
-        if (!currentSection) return false;
-
-        const target = direction === 'down' 
-            ? currentSection.nextElementSibling 
-            : currentSection.previousElementSibling;
-
-        if (target?.classList.contains('section')) {
-            isScrollBlocked = true;
-            target.scrollIntoView({ behavior: 'smooth' });
-            
-            clearTimeout(this.scrollTimeout);
-            this.scrollTimeout = setTimeout(() => {
-                isScrollBlocked = false;
-            }, 200);
-            return true;
-        }
-        return false;
-    },
-
-    handleWheel(event) {
-        const direction = event.deltaY > 0 ? 'down' : 'up';
-        const handled = this.scrollToAdjacentSection(direction);
-        
-        if (handled) {
-            event.preventDefault();
-        }
-    },
-
-    handleKeys(event) {
-        if (['ArrowDown', 'ArrowUp'].includes(event.key)) {
-            const direction = event.key === 'ArrowDown' ? 'down' : 'up';
-            const handled = this.scrollToAdjacentSection(direction);
-            
-            if (handled) {
-                event.preventDefault();
-            }
-        }
-    },
-
-    // Touch handling
-    touchStartY: 0,
-    handleTouchStart(event) {
-        this.touchStartY = event.touches[0].clientY;
-    },
-
-    handleTouchEnd(event) {
-        const deltaY = event.changedTouches[0].clientY - this.touchStartY;
-        if (Math.abs(deltaY) < 30) return;
-        
-        const direction = deltaY > 0 ? 'up' : 'down';
-        this.scrollToAdjacentSection(direction);
+});
+const form = document.getElementById("contact-form");
+const successMessage = document.getElementById("success-message");
+// Error messages
+const nameError = document.getElementById("name-error");
+const emailError = document.getElementById("email-error");
+const phoneError = document.getElementById("phone-error");
+const subjectError = document.getElementById("subject-error");
+const messageError = document.getElementById("message-error");
+form.addEventListener("submit", async (e) => {
+    e.preventDefault(); // Prevent the default form submission
+    // Reset error messages
+    nameError.classList.remove("active");
+    emailError.classList.remove("active");
+    phoneError.classList.remove("active");
+    subjectError.classList.remove("active");
+    messageError.classList.remove("active");
+    // Validate form fields
+    let isValid = true;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const phone = form.phonenumber.value.trim();
+    const subject = form.subject.value;
+    const message = form.message.value.trim();
+    if (!name) {
+        nameError.classList.add("active");
+        isValid = false;
     }
-};
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailError.classList.add("active");
+        isValid = false;
+    }
+    if (!phone) {
+        phoneError.classList.add("active");
+        isValid = false;
+    }
+    if (!subject) {
+        subjectError.classList.add("active");
+        isValid = false;
+    }
+    if (!message) {
+        messageError.classList.add("active");
+        isValid = false;
+    }
+    if (!isValid) {
+        return; // Stop submission if validation fails
+    }
+    // Get form data
+    const formData = new FormData(form);
+    try {
+        // Send data to Web3Forms
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData,
+        });
+        const result = await response.json();
+        if (result.success) {
+            // Hide the form and show the success message
+            form.style.display = "none";
+            successMessage.style.display = "block";
+        } else {
+            alert("Something went wrong. Please try again.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Something went wrong. Please try again.");
+    }
+});
+document.getElementById("phonenumber").addEventListener("input", function (event) {
+// Usuń wszystkie znaki, które nie są cyframi
+this.value = this.value.replace(/\D/g, '');
+// Upewnij się, że liczba ma maksymalnie 9 cyfr
+if (this.value.length > 9) {
+    this.value = this.value.slice(0, 9);
+}
+});
 
-sectionScrollController.initialize();
+document.getElementById("contact-form").addEventListener("submit", function (event) {
+    const phoneInput = document.getElementById("phonenumber");
+    const phoneError = document.getElementById("phone-error");
 
-const backToTopButton = document.querySelector('.back-to-top');
+    if (!/^\d{9}$/.test(phoneInput.value)) {
+        phoneError.classList.add("active");
+        event.preventDefault(); // Zatrzymuje wysłanie formularza
+    } else {
+        phoneError.classList.remove("active");
+    }
+});
+
+function scrollToContact() {
+    const contactSection = document.getElementById('contact');
+    contactSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Hide button when contact section is visible
+const floatingButton = document.querySelector('.floating-button');
+const contactSection = document.getElementById('contact');
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 5) {
-        backToTopButton.classList.add('visible');
+    const rect = contactSection.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+    
+    if (isVisible) {
+        floatingButton.classList.add('hidden');
     } else {
-        backToTopButton.classList.remove('visible');
+        floatingButton.classList.remove('hidden');
     }
 });
