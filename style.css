@@ -182,8 +182,6 @@ nav {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
     z-index: 90;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -413,7 +411,7 @@ font-weight: bold;
 }
 
 .cta-button:hover {
-background: #6a5acd;
+background: var(--claude-accent);
 transform: translateY(-2px);
 }
 
@@ -438,7 +436,7 @@ display: block;
 }
 
 #success-message h2 {
-    color: #7b68ee;
+    color: var(--claude-accent);
     font-family: 'JetBrains Mono', monospace;
     margin-bottom: 1rem;
 }
@@ -538,6 +536,7 @@ h2 {
 
     .nav-links a {
         padding: var(--spacing-xs) 0;
+        font-size: clamp(2rem, 2vw, 3rem);
     }
 
     .about-me-content {
@@ -558,10 +557,6 @@ h2 {
     .container {
         width: 95%;
         padding: 0 1rem;
-    }
-
-    .nav-links a {
-        font-size: clamp(0.8rem, 1.5vw, 1rem);
     }
 
     .card {
@@ -610,10 +605,6 @@ h2 {
 
     .card {
         padding: var(--spacing-sm);
-    }
-
-    .nav-links a {
-        font-size: clamp(2rem, 2vw, 3rem);
     }
 }
 
@@ -1007,7 +998,7 @@ transform: translate(0) scale(1);
 }
 
 #success-message h2 {
-    color: #7b68ee;
+    color: var(--claude-success);
     font-family: 'JetBrains Mono', monospace;
     margin-bottom: 1rem;
 }
@@ -1025,6 +1016,8 @@ transform: translate(0) scale(1);
 }
 
 .floating-button button {
+    width: 100%;
+    height: 100%;
     background-color: var(--claude-accent, #007bff);
     color: white;
     padding: 1rem 2rem;
@@ -1034,6 +1027,7 @@ transform: translate(0) scale(1);
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s, box-shadow 0.2s;
+    font-size: clamp(1rem, 2vw, 1.1rem);
 }
 
 .floating-button button:hover {
