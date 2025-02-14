@@ -1050,90 +1050,222 @@ transform: translate(0) scale(1);
     }
 }
 
-.container .pricsing-section {
-    background: var(--claude-text-light);
-}
-
 .pricing-section {
-    padding: 4rem 0;
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.section-title {
     text-align: center;
-    background-color: #dcdcdc;
-}
-
-.pricing-title {
-    margin-bottom: 3rem;
     font-size: 2.5rem;
-    color: #333;
+    color: #2d3748;
+    margin-bottom: 3rem;
+    font-weight: 700;
 }
 
-.pricing-grid {
+.pricing-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
-    margin: 2rem auto;
     max-width: 1200px;
+    margin: 0 auto;
     padding: 0 1rem;
 }
 
-.pricing-item {
-    background: #fff;
-    border-radius: 10px;
+.price-card {
+    background: white;
+    border-radius: 20px;
     padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
 }
 
-.pricing-item:hover {
-    transform: translateY(-5px);
+.price-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
 }
 
-.pricing-item h3 {
-    color: #333;
+.popular {
+    border: 2px solid var(--claude-accent);
+}
+
+.popular-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--claude-accent);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.card-header h3 {
+    color: #2d3748;
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    font-weight: 600;
 }
 
-.price {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #2563eb;
-    margin: 1rem 0;
+.price-tag {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25rem;
 }
 
-.pricing-detail {
-    color: #666;
+.amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--claude-accent);
+}
+
+.currency {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--claude-accent);
+}
+
+.period {
+    color: #64748b;
     font-size: 1rem;
 }
 
-.pricing-info {
-    max-width: 800px;
-    margin: 2rem auto;
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+}
+
+.highlight {
+    color: #4b5563;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.benefits-section {
+    margin-top: 4rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.benefits-title {
+    text-align: center;
+    color: #2d3748;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.benefits-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--claude-accent);
+    border-radius: 2px;
+}
+
+.benefits-banner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
     padding: 1rem;
-    border-radius: 8px;
-    color: #002ac4;
-    font-size: 1.6rem;
 }
 
-.cta-title {
-    margin: 3rem 0 2rem;
-    color: #333;
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.benefit-item:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-icon-wrapper {
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.benefit-icon {
     font-size: 2rem;
+    display: block;
 }
 
-/* Responsive adjustments */
+.benefit-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.benefit-label {
+    color: #2d3748;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.benefit-description {
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
 @media (max-width: 768px) {
-    .pricing-grid {
+    .benefits-section {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+    }
+
+    .benefits-banner {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1rem;
+    }
+
+    .benefit-item {
+        padding: 1rem;
+    }
+
+    .benefits-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-wrapper {
+        grid-template-columns: 1fr;
         padding: 0 1rem;
     }
-    
-    .pricing-title {
+
+    .section-title {
         font-size: 2rem;
-    }
-    
-    .pricing-item {
-        padding: 1.5rem;
     }
 }
 
@@ -1228,3 +1360,67 @@ transform: translate(0) scale(1);
         margin-bottom: 0;
     }
 }
+
+.custom-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.list-item:hover {
+    transform: translateX(5px);
+}
+
+.dot {
+    min-width: 8px;
+    height: 8px;
+    background: var(--claude-accent); /* Primary color - adjust as needed */
+    border-radius: 50%;
+    position: relative;
+}
+
+.dot::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: rgba(79, 70, 229, 0.2); /* Same as dot color but with opacity */
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease;
+}
+
+.list-item:hover .dot::before {
+    width: 20px;
+    height: 20px;
+}
+
+.text {
+    color: #4b5563;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Optional: Animation for dots on page load */
+@keyframes dotPulse {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+.dot {
+    animation: dotPulse 0.3s ease forwards;
+}
+
+.list-item:nth-child(1) .dot { animation-delay: 0.1s; }
+.list-item:nth-child(2) .dot { animation-delay: 0.2s; }
+.list-item:nth-child(3) .dot { animation-delay: 0.3s; }
