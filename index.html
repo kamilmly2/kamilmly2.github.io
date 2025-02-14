@@ -410,13 +410,25 @@
                     <label for="subject">Zakres</label>
                     <select id="subject" name="subject" required>
                         <option value="" disabled selected>Wybierz zakres</option>
-                        <option value="podstawowa">Szkoła podstawowa</option>
-                        <option value="osmoklasita">Przygotowanie do egzaminu 8-klasisty</option>
-                        <option value="srednia-podst">Szkoła Średnia - Poziom Podstawowy</option>
-                        <option value="srednia-roz">Szkoła Średnia - Poziom rozszerzony</option>
-                        <option value="mat-podst">Przygotowanie do matury poziom podstawowy</option>
+                        <option value="Szkoła podstawowa">Szkoła podstawowa</option>
+                        <option value="Przygotowanie do egzaminu 8-klasisty">Przygotowanie do egzaminu 8-klasisty</option>
+                        <option value="Szkoła Średnia - Poziom Podstawowy">Szkoła Średnia - Poziom Podstawowy</option>
+                        <option value="Szkoła Średnia - Poziom rozszerzony">Szkoła Średnia - Poziom rozszerzony</option>
+                        <option value="Przygotowanie do matury poziom podstawowy">Przygotowanie do matury poziom podstawowy</option>
                     </select>
                     <div class="error-message" id="subject-error">Proszę wybrać zakres.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="frequency">Częstotliwość korepetycji</label>
+                    <select id="frequency" name="frequency" required>
+                        <option value="" disabled selected>Jak często chcesz lekcje?</option>
+                        <option value="jeden raz, zajęcia pojedyńcze">jeden raz, zajęcia pojedyńcze</option>
+                        <option value="jeden raz w tygodniu">jeden raz w tygodniu</option>
+                        <option value="dwa razu w tygodniu">dwa razu w tygodniu</option>
+                        <option value="trzy razy w tygodniu">trzy razy w tygodniu</option>
+                    </select>
+                    <div class="error-message" id="subject-error">Proszę wybrać częstotliwość.</div>
                 </div>
         
                 <div class="form-group">
