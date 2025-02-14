@@ -148,3 +148,49 @@ window.addEventListener('scroll', () => {
 });
 
 document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+document.addEventListener('DOMContentLoaded', function() {
+    const burgerMenu = document.querySelector('.burger-menu');
+    const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
+
+    // Create backdrop element
+    const backdrop = document.createElement('div');
+    backdrop.className = 'nav-backdrop';
+    document.body.appendChild(backdrop);
+
+    // Toggle menu function
+    function toggleMenu() {
+        burgerMenu.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        backdrop.classList.toggle('active');
+        body.classList.toggle('menu-open');
+    }
+
+    // Event listeners
+    burgerMenu.addEventListener('click', toggleMenu);
+    backdrop.addEventListener('click', toggleMenu);
+
+    // Close menu when clicking on links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', toggleMenu);
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+            toggleMenu();
+        }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        const isNavLink = e.target.closest('.nav-links a');
+        const isBurger = e.target.closest('.burger-menu');
+        const isNav = e.target.closest('nav');
+
+        if (!isBurger && !isNavLink && !isNav && navLinks.classList.contains('active')) {
+            toggleMenu();
+        }
+    });
+});

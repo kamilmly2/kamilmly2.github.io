@@ -1,28 +1,24 @@
 :root {
-    /* Primary Colors */
-    --claude-primary: #1f2937;    /* Darker blue-gray for primary elements */
-    --claude-secondary: #374151;  /* Slightly lighter blue-gray for secondary elements */
-    --claude-accent: #3b82f6;     /* Professional blue for accents and calls-to-action */
-    --claude-light: #f8fafc;      /* Clean, crisp white for light backgrounds */
-    --claude-dark: #111827;       /* Deep blue-gray for dark elements */
-    
-    /* Complementary Colors */
-    --claude-success: #059669;    /* Professional green for success states */
-    --claude-warning: #d97706;    /* Muted orange for warnings */
-    --claude-error: #dc2626;      /* Reserved red for errors */
-    --claude-info: #3b82f6;       /* Matching accent blue for info states */
-    
-    /* Text Colors */
-    --claude-text-primary: #1f2937;   /* Dark gray for primary text */
-    --claude-text-secondary: #4b5563; /* Medium gray for secondary text */
-    --claude-text-light: #9ca3af;     /* Light gray for tertiary text */
-    
-    /* Spacing Scale */
-    --spacing-xs: clamp(0.5rem, 1vw, 0.75rem);    /* 8-12px */
-    --spacing-sm: clamp(1rem, 2vw, 1.5rem);       /* 16-24px */
-    --spacing-md: clamp(1.5rem, 3vw, 2rem);       /* 24-32px */
-    --spacing-lg: clamp(2rem, 4vw, 3rem);         /* 32-48px */
-    --spacing-xl: clamp(3rem, 6vw, 4rem);         /* 48-64px */
+     /* Keep existing color variables */
+     --claude-primary: #1f2937;
+     --claude-secondary: #374151;
+     --claude-accent: #3b82f6;
+     --claude-light: #f8fafc;
+     --claude-dark: #111827;
+     --claude-success: #059669;
+     --claude-warning: #d97706;
+     --claude-error: #dc2626;
+     --claude-info: #3b82f6;
+     --claude-text-primary: #1f2937;
+     --claude-text-secondary: #4b5563;
+     --claude-text-light: #9ca3af;
+ 
+     /* Updated spacing scale */
+     --spacing-xs: clamp(0.5rem, 1vw, 0.75rem);
+     --spacing-sm: clamp(0.75rem, 1.5vw, 1.25rem);
+     --spacing-md: clamp(1.25rem, 2.5vw, 1.75rem);
+     --spacing-lg: clamp(1.75rem, 3.5vw, 2.5rem);
+     --spacing-xl: clamp(2.5rem, 5vw, 3.5rem);
     
     /* Border Radius */
     --radius-sm: 0.25rem;     /* 4px */
@@ -54,8 +50,13 @@ body {
     overflow-x: hidden;
 }
 
+p {
+    width: 100%;
+    text-align: left;
+}
+
 .container {
-    width: min(90%, 1200px);
+    width: min(95%, 1400px);
     margin: 0 auto;
     padding: 0 var(--spacing-sm);
     text-align: center;
@@ -78,33 +79,118 @@ nav {
     flex-wrap: wrap;
     gap: var(--spacing-sm);
 }
-
 .logo {
     color: var(--claude-light);
     font-size: clamp(1.25rem, 3vw, 1.5rem);
     font-weight: 500;
     text-decoration: none;
-    font-family: 'JetBrains Mono', monospace;
-}
-
+    font-family: 'JetBrains Mono', monospace;}
 .nav-links {
     display: flex;
     gap: var(--spacing-md);
 }
-
 .nav-links a {
     color: var(--claude-light);
     text-decoration: none;
-    font-size: clamp(0.875rem, 2vw, 1rem);
     font-weight: 400;
     transition: color 0.3s ease;
     font-family: 'JetBrains Mono', monospace;
     white-space: nowrap;
     position: relative;
 }
-
 .nav-links a:hover {
     color: var(--claude-accent);
+}
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 200;
+}
+.burger-bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--claude-light);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+/* Media query for mobile navigation */
+@media (max-width: 768px) {
+    .burger-menu {
+        display: flex;
+    }
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--claude-dark);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        transition: right 0.3s ease-in-out;
+        z-index: 100;
+    }
+    .nav-links.active {
+        right: 0;
+    }
+    .burger-menu.active .burger-bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    .burger-menu.active .burger-bar:nth-child(2) {
+        opacity: 0;
+    }
+    .burger-menu.active .burger-bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    .nav-links a {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .nav-links.active a {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .nav-links a:nth-child(1) { transition-delay: 0.1s; }
+    .nav-links a:nth-child(2) { transition-delay: 0.2s; }
+    .nav-links a:nth-child(3) { transition-delay: 0.3s; }
+    .nav-links a:nth-child(4) { transition-delay: 0.4s; }
+    .nav-links a:nth-child(5) { transition-delay: 0.5s; }
+    .nav-links a:nth-child(6) { transition-delay: 0.6s; }
+}
+
+.nav-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 90;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.nav-backdrop.active {
+    display: block;
+    opacity: 1;
 }
 
 .hero {
@@ -141,11 +227,12 @@ nav {
     text-align: left;
     position: relative;
     z-index: 2;
+    margin-top: 5%;
   }
   
   .hero-content {
     width: min(100%, 1000px);
-    margin: auto;
+    /*margin: auto;*/
     position: relative;
     z-index: 2;
     padding: var(--spacing-md);
@@ -179,22 +266,26 @@ nav {
   }
   
   h1 {
-    font-size: clamp(2rem, 6vw, 4rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     line-height: 1.2;
     margin-bottom: var(--spacing-md);
     font-weight: 600;
     font-family: 'JetBrains Mono', monospace;
   }
   
+  p, .about-text {
+    font-size: clamp(1.3rem, 2vw, 1.2rem);
+}
+
   .accent {
     color: var(--claude-accent);
   }
   
   .hero p {
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-size: clamp(1rem, 2vw, 1.3rem);
     color: var(--claude-light);
     margin-bottom: 3rem;
-    max-width: 600px;
+    max-width: 800px;
     font-style: italic;
   }
   
@@ -251,6 +342,11 @@ nav {
     font-family: 'JetBrains Mono', monospace;
     margin-bottom: 1rem;
     color: var(--claude-primary);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+}
+
+.card p {
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
 }
 
 .contact-form {
@@ -387,11 +483,34 @@ display: block;
 .shape:nth-child(2) { top: 60%; right: 15%; animation-delay: 1s; }
 .shape:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 2s; }
 
+.tool-description h4 {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+}
+
+.tool-description p {
+    font-size: clamp(0.9rem, 1.8vw, 1.6rem);
+}
+
+/* Review content adjustments */
+.review-content p {
+    font-size: clamp(0.9rem, 1.8vw, 1.6rem);
+}
+
+/* Approach section adjustments */
+.approach-inside h3 {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+}
+
+.approach-inside p {
+    font-size: clamp(0.9rem, 1.8vw, 1.4rem);
+}
+
 h2 {
     font-family: 'JetBrains Mono', monospace;
     font-size: 2.5rem;
     margin-bottom: 2rem;
     color: var(--claude-primary);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .math-icon {
@@ -434,6 +553,67 @@ h2 {
 
     .particles {
         display: none;
+    }
+
+    .container {
+        width: 95%;
+        padding: 0 1rem;
+    }
+
+    .nav-links a {
+        font-size: clamp(0.8rem, 1.5vw, 1rem);
+    }
+
+    .card {
+        padding: var(--spacing-md);
+    }
+
+    .tool-item {
+        padding: 1rem;
+    }
+
+    .about-text {
+        font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+    }
+
+    .benefits-section {
+        margin: 2rem 0.5rem;
+        padding: 1rem;
+    }
+
+    .benefit-label {
+        font-size: clamp(1rem, 2vw, 1.3rem);
+    }
+
+    .benefit-description {
+        font-size: clamp(0.8rem, 1.6vw, 1.1rem);
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
+    .container {
+        width: 98%;
+        padding: 0 0.5rem;
+    }
+
+    .hero p {
+        font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+    }
+
+    .hero h1 {
+        font-size: clamp(3rem, 1.8vw, 3.5rem);
+    }
+
+    .card {
+        padding: var(--spacing-sm);
+    }
+
+    .nav-links a {
+        font-size: clamp(2rem, 2vw, 3rem);
     }
 }
 
@@ -535,72 +715,6 @@ h2 {
     animation: mathBlink 4s ease-in-out infinite;
 }
 
-/* Animated underline for nav links */
-.nav-links a {
-    position: relative;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background-color: var(--claude-accent);
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-/* Floating calculator animation */
-.calculator {
-    position: absolute;
-    right: 10%;
-    top: 30%;
-    width: 200px;
-    height: 300px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    animation: float 6s ease-in-out infinite;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
-    padding: 10px;
-}
-
-.calc-button {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--claude-light);
-    font-family: 'JetBrains Mono', monospace;
-    aspect-ratio: 1;
-    transition: all 0.3s ease;
-}
-
-.calc-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.1);
-}
-
-.calc-screen {
-    grid-column: 1 / -1;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--claude-light);
-}
-
-/* Particle effect */
 .particles {
     position: fixed;
     top: 0;
