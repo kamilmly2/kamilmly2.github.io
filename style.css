@@ -43,7 +43,7 @@ html {
 }
 
 body {
-    font-family: 'Crimson Pro', serif;
+    font-family: system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     color: var(--claude-primary);
     background: var(--claude-light);
@@ -84,7 +84,7 @@ nav {
     font-size: clamp(1.25rem, 3vw, 1.5rem);
     font-weight: 500;
     text-decoration: none;
-    font-family: 'JetBrains Mono', monospace;}
+    font-family: system-ui, -apple-system, sans-serif;}
 .nav-links {
     display: flex;
     gap: var(--spacing-md);
@@ -94,7 +94,7 @@ nav {
     text-decoration: none;
     font-weight: 400;
     transition: color 0.3s ease;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: system-ui, -apple-system, sans-serif;
     white-space: nowrap;
     position: relative;
 }
@@ -191,59 +191,73 @@ nav {
     opacity: 1;
 }
 
+/* Hero Section Base Styles */
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
     padding: calc(4rem + var(--spacing-xl)) var(--spacing-md) var(--spacing-xl);
-    background: linear-gradient(
-        rgba(31, 41, 55, 0.85), 
-        rgba(31, 41, 55, 0.95)
-      ),
-      url('images/hero_background_0.jpg') center/cover;
-    color: var(--claude-light);
+    background-color: rgb(31, 41, 55); /* Fallback */
     position: relative;
     overflow: hidden;
-  }
-  
-  .hero::before {
+    isolation: isolate; /* Creates a new stacking context */
+}
+
+/* Hero Background Layers */
+.hero::before,
+.hero::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0; /* Shorthand for top/right/bottom/left: 0 */
+    z-index: -1;
+}
+
+.hero::before {
+    background: 
+        linear-gradient(
+            rgba(31, 41, 55, 0.85), 
+            rgba(31, 41, 55, 0.95)
+        ),
+        url('images/hero_background_0.jpg') center/cover;
+    filter: saturate(1.2) brightness(0.9); /* Enhance image */
+}
+
+.hero::after {
     background: linear-gradient(
         135deg,
-        rgba(59, 130, 246, 0.1) 0%,
-        rgba(31, 41, 55, 0.1) 100%
-      );
-    z-index: 1;
-  }
-  
-  .hero .container {
+        rgba(59, 130, 246, 0.15) 0%,
+        rgba(31, 41, 55, 0.15) 100%
+    );
+    mix-blend-mode: overlay;
+}
+
+/* Hero Container */
+.hero .container {
+    width: 100%;
     text-align: left;
     position: relative;
     z-index: 2;
     margin-top: 5%;
-  }
-  
-  .hero-content {
+}
+
+/* Hero Content */
+.hero-content {
     width: min(100%, 1000px);
-    /*margin: auto;*/
     position: relative;
-    z-index: 2;
     padding: var(--spacing-md);
-    animation: fadeInUp 1s ease-out;
-  }
-  
-  .hero-grid {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0; /* Start invisible for animation */
+}
+
+/* Hero Grid Layout */
+.hero-grid {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
-    gap: 2rem;
+    gap: clamp(2rem, 5vw, 4rem);
     align-items: center;
 }
 
+/* Hero Image */
 .hero-image {
     position: relative;
     z-index: 3;
@@ -251,41 +265,115 @@ nav {
     max-width: 600px;
     margin-left: auto;
     animation: float 24s ease-in-out infinite;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
 }
 
-  @media (max-width: 768px) {
-    .hero-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .hero-image {
-      display: none;
-    }
-  }
-  
-  h1 {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
+.hero-image:hover {
+    transform: scale(1.02) translateY(-5px);
+}
+
+/* Typography */
+.hero h1 {
+    font-size: clamp(3.5rem, 5vw, 4.5rem);
     line-height: 1.2;
     margin-bottom: var(--spacing-md);
     font-weight: 600;
-    font-family: 'JetBrains Mono', monospace;
-  }
-  
-  p, .about-text {
-    font-size: clamp(1.3rem, 2vw, 1.2rem);
+    font-family: 'Century Schoolbook', ;
+    background: linear-gradient(120deg, var(--claude-light) 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
-  .accent {
-    color: var(--claude-accent);
-  }
-  
-  .hero p {
-    font-size: clamp(1rem, 2vw, 1.3rem);
+.hero p {
+    font-size: clamp(2rem, 2vw, 2.6rem);
     color: var(--claude-light);
     margin-bottom: 3rem;
     max-width: 800px;
     font-style: italic;
-  }
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.accent {
+    color: var(--claude-accent);
+    position: relative;
+    display: inline-block;
+}
+
+.accent::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--claude-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.accent:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        padding-top: calc(2rem + var(--spacing-xl));
+        min-height: 90vh;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .hero-image {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+    }
+
+    .hero p {
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+        margin-bottom: 2rem;
+    }
+}
+
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .hero::before {
+        filter: saturate(0.8) brightness(0.7);
+    }
+}
   
 
 .cta-button {
@@ -297,7 +385,7 @@ nav {
     border-radius: 4px;
     font-weight: 500;
     transition: all 0.3s ease;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: system-ui, -apple-system, sans-serif;
 }
 
 .cta-button:hover {
@@ -337,7 +425,7 @@ nav {
 }
 
 .card h3 {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: system-ui, -apple-system, sans-serif;
     margin-bottom: 1rem;
     color: var(--claude-primary);
     font-size: clamp(1.2rem, 2.5vw, 1.6rem);
@@ -437,7 +525,7 @@ display: block;
 
 #success-message h2 {
     color: var(--claude-accent);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: system-ui, -apple-system, sans-serif;
     margin-bottom: 1rem;
 }
 
@@ -456,7 +544,7 @@ display: block;
 
 .equation {
     position: absolute;
-    font-family: 'Crimson Pro', serif;
+    font-family: system-ui, -apple-system, sans-serif;
     color: var(--claude-light);
     font-style: italic;
 }
@@ -504,7 +592,7 @@ display: block;
 }
 
 h2 {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: system-ui, -apple-system, sans-serif;
     font-size: 2.5rem;
     margin-bottom: 2rem;
     color: var(--claude-primary);
@@ -815,7 +903,7 @@ animation: float 20s infinite ease-in-out;
     justify-content: center;
     color: var(--claude-light);
     font-size: clamp(2rem, 4vw, 3rem);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: system-ui, -apple-system, sans-serif;
 }
 
 .about-text {
@@ -901,13 +989,13 @@ animation: float 20s infinite ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: system-ui, -apple-system, sans-serif;
     font-weight: bold;
 }
 
 .reviewer-info h4 {
     margin: 0;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: system-ui, -apple-system, sans-serif;
 }
 
 .reviewer-info p {
@@ -999,7 +1087,7 @@ transform: translate(0) scale(1);
 
 #success-message h2 {
     color: var(--claude-success);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: system-ui, -apple-system, sans-serif;
     margin-bottom: 1rem;
 }
 
@@ -1067,7 +1155,7 @@ transform: translate(0) scale(1);
 }
 
 .tools-panel h3 {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: system-ui, -apple-system, sans-serif;
     font-size: 1.5rem;
     color: var(--claude-primary);
     margin-bottom: 2rem;
@@ -1119,7 +1207,7 @@ transform: translate(0) scale(1);
 }
 
 .tool-description h4 {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: system-ui, -apple-system, sans-serif;
     font-size: 1.8rem;
     color: var(--claude-accent);
     margin-bottom: 0.5rem;
