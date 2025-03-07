@@ -232,13 +232,7 @@ nav {
 }
 
 /* Hero Container */
-.hero .container {
-    width: 100%;
-    text-align: left;
-    position: relative;
-    z-index: 2;
-    margin-top: 5%;
-}
+
 
 /* Hero Content */
 .hero-content {
@@ -284,6 +278,7 @@ nav {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    text-align: left;
 }
 
 .hero p {
